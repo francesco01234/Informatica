@@ -134,3 +134,23 @@ if funghi_trovati == numero_funghi:
     print("\nCOMPLIMENTI!")
     print("Hai trovato tutti i funghi!")
 
+nome = input("\nInserisci il tuo nome: ").strip()
+if nome == "":
+    nome = "Cacciatore_Anonimo"
+
+# Salvo il punteggio attuale
+file = open("punteggi.txt", "a", encoding="utf-8")
+file.write(nome + " - Funghi trovati: " + str(funghi_trovati) + "\n")
+file.close()
+print("Punteggio salvato nel file punteggi.txt")
+
+# Salvataggio dati per le statistiche generali
+file_t = open("statistiche.txt", "a", encoding="utf-8")
+esito = "COMPLETATO" if funghi_trovati == numero_funghi else "NON_COMPLETATO"
+file_t.write(nome + "," + str(tentativi) + "," + esito + "\n")
+file_t.close()
+
+# Calcolo del record assoluto registrato
+file_t = open("statistiche.txt", "r", encoding="utf-8")
+record_nome = ""
+min_tentativi = 999999

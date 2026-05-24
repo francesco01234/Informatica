@@ -69,3 +69,23 @@ def stampa_scacchiera():
             print(scacchiera[riga][colonna], end=" ")
         print()
 
+# Variabili di gioco
+funghi_trovati = 0
+tentativi = 0
+registro_mosse = []  
+inizio = time.time()
+
+# Ciclo principale della partita
+while funghi_trovati < numero_funghi:
+    tempo_passato = time.time() - inizio
+    tempo_rimasto = int(tempo_limite - tempo_passato)
+    
+    if tempo_rimasto <= 0:
+        print("\nTEMPO SCADUTO!")
+        print("Hai perso!")
+        break
+        
+    print("\nTempo rimasto:", tempo_rimasto, "secondi")
+    print("Funghi trovati:", funghi_trovati, "/", numero_funghi)
+    stampa_scacchiera()
+    

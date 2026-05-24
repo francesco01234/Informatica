@@ -154,3 +154,29 @@ file_t.close()
 file_t = open("statistiche.txt", "r", encoding="utf-8")
 record_nome = ""
 min_tentativi = 999999
+
+for linea in file_t:
+    dati = linea.strip().split(",")
+    if len(dati) == 3 and dati[2] == "COMPLETATO":
+        try:
+            t_attuali = int(dati[1])
+            if t_attuali < min_tentativi:
+                min_tentativi = t_attuali
+                record_nome = dati[0]
+        except ValueError:
+            continue
+file_t.close()
+
+print("\n=== RECORD ASSOLUTO ===")
+if record_nome != "":
+    print("Il record attuale è di:", record_nome, "con soli", min_tentativi, "tentativi!")
+else:
+    print("Nessun record registrato (nessuno ha ancora completato il gioco trovando tutti i funghi).")
+
+# Conteggio tempo e precisione finali
+tempo_finale_impiegato = int(time.time() - inizio)
+if tempo_finale_impiegato > tempo_limite:
+    tempo_finale_impiegato = tempo_limite
+
+precisione_colpi = (funghi_trovati / tentativi * 100) if tentativi > 0 else 0.0
+

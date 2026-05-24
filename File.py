@@ -43,3 +43,29 @@ while len(funghi) < numero_funghi:
         funghi.add(posizione)
         scacchiera[riga][colonna] = ","
 
+# Salvataggio scacchiera iniziale su file
+file = open("scacchiera.txt", "w", encoding="utf-8")
+for riga in scacchiera:
+    file.write(" ".join(riga) + "\n")
+file.close()
+
+# lettura e stampa della scacchiera dal file
+print("\nScacchiera caricata dal file:\n")
+file = open("scacchiera.txt", "r", encoding="utf-8")
+contenuto = file.read()
+print(contenuto)
+file.close()
+
+# Funzione per stampare la griglia di gioco
+def stampa_scacchiera():
+    print("    ", end="")
+    for i in range(dimensione):
+        print(lettere[i], end=" ")
+    print()
+
+    for riga in range(dimensione):
+        print(riga + 1, end="  ")
+        for colonna in range(dimensione):
+            print(scacchiera[riga][colonna], end=" ")
+        print()
+

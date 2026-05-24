@@ -23,3 +23,23 @@ elif scelta == "3":
 else:
     print("Scelta non valida. Il programma si interromperà.")
     exit()
+
+# Creazione griglia vuota
+lettere = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+scacchiera = []
+for riga in range(dimensione):
+    linea = []
+    for colonna in range(dimensione):
+        linea.append(".")
+    scacchiera.append(linea)
+
+# Posizionamento dei funghi
+funghi = set()
+while len(funghi) < numero_funghi:
+    riga = random.randint(0, dimensione - 1)
+    colonna = random.randint(0, dimensione - 1)
+    posizione = (riga, colonna)
+    if posizione not in funghi:
+        funghi.add(posizione)
+        scacchiera[riga][colonna] = ","
+

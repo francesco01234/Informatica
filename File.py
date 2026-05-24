@@ -89,3 +89,29 @@ while funghi_trovati < numero_funghi:
     print("Funghi trovati:", funghi_trovati, "/", numero_funghi)
     stampa_scacchiera()
     
+        coordinata_input = input("\nInserisci coordinata (esempio A1): ").upper().strip()
+    
+    if len(coordinata_input) < 2:
+        print("Input non valido")
+        continue
+        
+    lettera = coordinata_input[0]
+    numero = coordinata_input[1:]
+    
+    if not numero.isdigit():
+        print("Numero non valido")
+        continue
+        
+    riga = int(numero) - 1
+    colonna = lettere.find(lettera)
+    
+    # Controllo confini della mappa
+    if riga < 0 or riga >= dimensione:
+        print("Riga non valida")
+        continue
+    if colonna < 0 or colonna >= dimensione:
+        print("Colonna non valida")
+        continue
+        
+    tentativi += 1
+

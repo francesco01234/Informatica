@@ -115,3 +115,22 @@ while funghi_trovati < numero_funghi:
         
     tentativi += 1
 
+    # Controllo coordinata inserita
+    if scacchiera[riga][colonna] == ",":
+        print("Fungo trovato!")
+        scacchiera[riga][colonna] = "X"
+        funghi_trovati += 1
+        registro_mosse.append(f"Mossa {tentativi} -> Coordinata {coordinata_input}: FUNGO TROVATO")
+    elif scacchiera[riga][colonna] == "X":
+        print("Hai già preso questo fungo!")
+        registro_mosse.append(f"Mossa {tentativi} -> Coordinata {coordinata_input}: Gia' preso in precedenza")
+    else:
+        print("Nessun fungo qui!")
+        scacchiera[riga][colonna] = " "  
+        registro_mosse.append(f"Mossa {tentativi} -> Coordinata {coordinata_input}: Acqua (Vuoto)")
+
+# Controllo vittoria finale
+if funghi_trovati == numero_funghi:
+    print("\nCOMPLIMENTI!")
+    print("Hai trovato tutti i funghi!")
+

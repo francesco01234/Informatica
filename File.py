@@ -180,3 +180,28 @@ if tempo_finale_impiegato > tempo_limite:
 
 precisione_colpi = (funghi_trovati / tentativi * 100) if tentativi > 0 else 0.0
 
+# Assegnazione premio
+if funghi_trovati == numero_funghi:
+    if precisione_colpi >= 75:
+        grado_giocatore = "CACCIATORE LEGGENDARIO (Massima Precisione)"
+    elif precisione_colpi >= 50:
+        grado_giocatore = "CACCIATORE ESPERTO (Buona Precisione)"
+    else:
+        grado_giocatore = "CACCIATORE QUALIFICATO (Esploratore Standard)"
+else:
+    grado_giocatore = "DILETTANTE SPERDUTO (Partita non completata)"
+
+# Generazione file del report finale
+file_rep = open("report_partita.txt", "w", encoding="utf-8")
+file_rep.write("==================================================\n")
+file_rep.write("          CERTIFICATO DI FINE PARTITA             \n")
+file_rep.write("==================================================\n")
+file_rep.write(f" Nome Esploratore     : {nome}\n")
+file_rep.write(f" Valutazione Finale   : {grado_giocatore}\n")
+file_rep.write(f" Funghi Raccolti      : {funghi_trovati} / {numero_funghi}\n")
+file_rep.write(f" Numero Mosse Totali  : {tentativi}\n")
+file_rep.write(f" Precisione di Ricerca: {round(precisione_colpi, 2)}%\n")
+file_rep.write(f" Tempo Speso nel Bosco: {tempo_finale_impiegato} secondi\n")
+file_rep.write("==================================================\n")
+file_rep.close()
+

@@ -1,4 +1,4 @@
-import random
+import random   #--> PRIMA PARTE
 import time
 
 # Scelta difficolta
@@ -23,7 +23,7 @@ elif scelta == "3":
 else:
     print("Scelta non valida. Il programma si interromperà.")
     exit()
-
+                            #--> SECONDO COMMIT
 # Creazione griglia vuota
 lettere = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 scacchiera = []
@@ -43,7 +43,7 @@ while len(funghi) < numero_funghi:
         funghi.add(posizione)
         scacchiera[riga][colonna] = ","
 
-# Salvataggio scacchiera iniziale su file
+# Salvataggio scacchiera iniziale su file            #-->TERZO COMMIT
 file = open("scacchiera.txt", "w", encoding="utf-8")
 for riga in scacchiera:
     file.write(" ".join(riga) + "\n")
@@ -69,7 +69,7 @@ def stampa_scacchiera():
             print(scacchiera[riga][colonna], end=" ")
         print()
 
-# Variabili di gioco
+# Variabili di gioco               #--> QUARTO COMMIT
 funghi_trovati = 0
 tentativi = 0
 registro_mosse = []  
@@ -89,7 +89,7 @@ while funghi_trovati < numero_funghi:
     print("Funghi trovati:", funghi_trovati, "/", numero_funghi)
     stampa_scacchiera()
     
-        coordinata_input = input("\nInserisci coordinata (esempio A1): ").upper().strip()
+    coordinata_input = input("\nInserisci coordinata (esempio A1): ").upper().strip()  #-->QUINTO COMMIT
     
     if len(coordinata_input) < 2:
         print("Input non valido")
@@ -115,7 +115,7 @@ while funghi_trovati < numero_funghi:
         
     tentativi += 1
 
-    # Controllo coordinata inserita
+    # Controllo coordinata inserita     --> SESTO COMMIT
     if scacchiera[riga][colonna] == ",":
         print("Fungo trovato!")
         scacchiera[riga][colonna] = "X"
@@ -134,7 +134,7 @@ if funghi_trovati == numero_funghi:
     print("\nCOMPLIMENTI!")
     print("Hai trovato tutti i funghi!")
 
-nome = input("\nInserisci il tuo nome: ").strip()
+nome = input("\nInserisci il tuo nome: ").strip()   #-->SETTIMO COMMIT
 if nome == "":
     nome = "Cacciatore_Anonimo"
 
@@ -155,7 +155,7 @@ file_t = open("statistiche.txt", "r", encoding="utf-8")
 record_nome = ""
 min_tentativi = 999999
 
-for linea in file_t:
+for linea in file_t:              #--> OTTAVO COMMIT
     dati = linea.strip().split(",")
     if len(dati) == 3 and dati[2] == "COMPLETATO":
         try:
@@ -180,7 +180,7 @@ if tempo_finale_impiegato > tempo_limite:
 
 precisione_colpi = (funghi_trovati / tentativi * 100) if tentativi > 0 else 0.0
 
-# Assegnazione premio
+# Assegnazione premio                #--> NONO COMMIT
 if funghi_trovati == numero_funghi:
     if precisione_colpi >= 75:
         grado_giocatore = "CACCIATORE LEGGENDARIO (Massima Precisione)"
@@ -205,3 +205,21 @@ file_rep.write(f" Tempo Speso nel Bosco: {tempo_finale_impiegato} secondi\n")
 file_rep.write("==================================================\n")
 file_rep.close()
 
+# Generazione file cronologia mosse della partita   #-->REVISIONE E CONCLUSIONE
+file_log = open("cronologia_mosse.txt", "w", encoding="utf-8")
+file_log.write(f"REGISTRO CRONOLOGICO DI: {nome.upper()}\n")
+file_log.write("----------------------------------------\n")
+for mossa in registro_mosse:
+    file_log.write(mossa + "\n")
+file_log.close()
+
+# Stampa a schermo del report salvato
+print("\nElaborazione del report finale in corso...")
+time.sleep(1)
+
+file_rep = open("report_partita.txt", "r", encoding="utf-8")
+stampa_finale_report = file_rep.read()
+print(stampa_finale_report)
+file_rep.close()
+
+print("I file 'report_partita.txt' and 'cronologia_mosse.txt' sono stati salvati correttamente.")
